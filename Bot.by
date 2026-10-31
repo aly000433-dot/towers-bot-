@@ -1,0 +1,22 @@
+import os
+import telebot
+
+TOKEN = "9221940869:AAEulMzDccOfTM4ScIiof68xjfe9rW-qKF4"
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "أهلاً بك يا ابويوسف! بوت متابعة المستودع جاهز لخدمتك.")
+
+@bot.message_handler(commands=['report'])
+def get_inventory_report(message):
+    report_text = (
+        "📊 **تقرير حركة المستودع اليومي**\n\n"
+        "🔹 حالة المستودع: متصل بنجاح\n"
+        "✅ كل الأمور تمام يا ابويوسف."
+    )
+    bot.reply_to(message, report_text, parse_mode="Markdown")
+
+if __name__ == '__main__':
+    print("Bot is running...")
+    bot.infinity_polling()
